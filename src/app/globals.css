@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-900: #1a5276;
+  --color-primary-600: #87ceeb;
+  --color-muted-teal: #4b7a99;
+  --color-light-sage: #cce7eb;
+  --color-cream: #ffffff;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+
+  --animate-marquee: marquee 150s linear infinite;
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a5276;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a5276;
+    --foreground: #ffffff;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  @apply antialiased selection:bg-primary-900 selection:text-white;
+}
+
+@utility glass {
+  background-color: var(--background);
+  border: 1px solid rgba(150, 150, 150, 0.2);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+/* Formal card utility specifically for overlapping   images */
+@utility formal-card {
+  @apply bg-white border border-gray-100 p-8 shadow-2xl;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Reduced excessive padding for higher density */
+@utility section-padding {
+  @apply py-12 md:py-16;
+}
+
+@utility hover-card {
+  @apply transition-transform duration-500 hover:-translate-y-2;
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-4 bg-primary-900 text-cream font-bold uppercase tracking-widest text-xs transition-all duration-500 border border-primary-900 rounded;
+
+  &:hover {
+    background-color: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+  }
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-4 bg-transparent text-primary-900 font-bold uppercase tracking-widest text-xs transition-all duration-500 border border-primary-900 rounded;
+
+  &:hover {
+    background-color: var(--color-primary-900);
+    color: var(--color-cream);
+  }
+}
+
+/* Updated Typography Utilities - High Density */
+@utility heading-display {
+  @apply font-serif text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] text-balance;
+}
+
+@utility heading-primary {
+  @apply font-serif text-4xl md:text-5xl font-semibold tracking-tight leading-snug text-balance;
+}
+
+/* Kept tracking-widest for small subheaders to contrast the serif display fonts */
+@utility heading-sub {
+  @apply font-sans text-xs font-bold uppercase tracking-[0.2em];
+}
