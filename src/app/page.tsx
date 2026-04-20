@@ -38,7 +38,7 @@ export default function Home() {
     <div className="flex flex-col w-full bg-cream min-h-screen">
 
       {/* 1. Hero Section — Full-screen Cinematic */}
-      <section className="relative h-[92vh] w-full overflow-hidden bg-primary-900 mt-20">
+      <section className="relative min-h-[92vh] flex flex-col justify-center w-full overflow-hidden bg-primary-900 mt-10">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
@@ -167,9 +167,9 @@ export default function Home() {
       </section>
 
       {/* 3. Core Values Grid (NEW) */}
-      <section className="h-[92vh] flex flex-col justify-center py-40 px-6 md:px-12 bg-primary-900 text-cream">
+      <section className="min-h-screen flex flex-col justify-center py-12 md:py-20 px-6 md:px-12 bg-primary-900 text-cream">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-20">
+          <div className="text-center mb-12">
             <motion.div {...fadeInUp}>
               <h2 className="text-[12px] font-bold uppercase tracking-[0.3em] text-light-sage mb-4">OUR MINISTRY VALUES & ACTIVITIES</h2>
               <h3 className="font-serif text-3xl md:text-5xl font-bold text-cream max-w-3xl mx-auto">Five Fold Ministry And Spiritual Gift In Operation.</h3>
