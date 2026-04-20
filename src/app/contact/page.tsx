@@ -14,6 +14,8 @@ const fadeInUp = {
 
 export default function ContactPage() {
    const [isMobile, setIsMobile] = useState(false);
+   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+   const [message, setMessage] = useState('');
 
    useEffect(() => {
       const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -36,6 +38,52 @@ export default function ContactPage() {
 
    // Manage section height here (e.g., "py-12", "py-24", "h-screen", "min-h-[600px]")
    const sectionPadding = "py-10";
+
+   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      setStatus('loading');
+      setMessage('');
+
+      const formData = new FormData(event.currentTarget);
+      
+      // Access key from client-side environment variable
+      const accessKey = process.env.NEXT_PUBLIC_FORM_API;
+
+      if (!accessKey) {
+         console.error('Environment Error: NEXT_PUBLIC_FORM_API is not defined.');
+         setStatus('error');
+         setMessage('Configuration Error: The form setup is incomplete. Please restart your development server (npm run dev) to load the new environment variables.');
+         return;
+      }
+
+      formData.append('access_key', accessKey);
+
+      try {
+         // Log the submission (without the key) for debugging
+         console.log('Submitting form to Web3Forms...');
+
+         const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData,
+         });
+
+         const data = await response.json();
+
+         if (response.ok && data.success) {
+            setStatus('success');
+            setMessage('Thank you! Your message has been sent successfully.');
+            (event.target as HTMLFormElement).reset();
+         } else {
+            console.error('Web3Forms API Error:', data);
+            setStatus('error');
+            setMessage(data.message || `Error (${response.status}): Failed to send message.`);
+         }
+      } catch (error) {
+         console.error('Submission Error:', error);
+         setStatus('error');
+         setMessage('Submission Error: Could not connect to Web3Forms. This can happen if an ad-blocker is blocking the request. Please disable ad-blockers for this site or check your internet connection.');
+      }
+   };
 
    return (
       <div className="flex flex-col w-full bg-cream min-h-screen">
@@ -165,32 +213,32 @@ export default function ContactPage() {
                   <h3 className="font-serif text-3xl lg:text-4xl font-bold text-primary-900 mb-2 leading-tight">Send a Message</h3>
                   <p className="text-sm text-primary-900/60 mb-4">Fill out the form and our team will get back to you.</p>
 
-                  <form className="space-y-5 max-w-xl">
+                  <form onSubmit={onSubmit} className="space-y-5 max-w-xl">
                      <div className="flex flex-col">
                         <label className="text-[10px] font-bold uppercase tracking-widest text-primary-900 mb-1">Full Name *</label>
-                        <input type="text" required className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
+                        <input type="text" name="name" required className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
                      </div>
 
                      <div className="grid grid-cols-2 gap-4">
                         <div className="flex flex-col">
                            <label className="text-[10px] font-bold uppercase tracking-widest text-primary-900 mb-1">Email *</label>
-                           <input type="email" required className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
+                           <input type="email" name="email" required className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
                         </div>
                         <div className="flex flex-col">
                            <label className="text-[10px] font-bold uppercase tracking-widest text-primary-900 mb-1">Phone</label>
-                           <input type="tel" className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
+                           <input type="tel" name="phone" className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
                         </div>
                      </div>
 
                      <div className="grid grid-cols-2 gap-4">
                         <div className="flex flex-col">
                            <label className="text-[10px] font-bold uppercase tracking-widest text-primary-900 mb-1">Country</label>
-                           <input type="text" className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
+                           <input type="text" name="country" className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors" />
                         </div>
                         <div className="flex flex-col">
                            <label className="text-[10px] font-bold uppercase tracking-widest text-primary-900 mb-1">Subject</label>
                            <div className="relative">
-                              <select required className="w-full bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors appearance-none">
+                              <select name="subject" required className="w-full bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors appearance-none">
                                  <option disabled defaultValue="General Enquiry">Select...</option>
                                  <option>General Enquiry</option>
                                  <option>Prayer Request</option>
@@ -209,11 +257,29 @@ export default function ContactPage() {
 
                      <div className="flex flex-col">
                         <label className="text-[10px] font-bold uppercase tracking-widest text-primary-900 mb-1">Message *</label>
-                        <textarea required rows={5} className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors resize-none"></textarea>
+                        <textarea name="message" required rows={5} className="bg-cream border border-muted-teal/30 rounded-lg px-3 py-3 text-sm text-primary-900 focus:outline-none focus:border-primary-600 transition-colors resize-none"></textarea>
                      </div>
 
-                     <button type="submit" className="w-full bg-primary-600 text-white font-bold text-sm py-4 rounded-xl hover:bg-primary-900 transition-colors shadow-md">
-                        Send Message
+                     {status !== 'idle' && (
+                        <div className={`p-4 rounded-lg text-sm font-medium ${status === 'success' ? 'bg-green-50 text-green-700 border border-green-200' :
+                              status === 'error' ? 'bg-red-50 text-red-700 border border-red-200' :
+                                 'bg-blue-50 text-blue-700 border border-blue-200 animate-pulse'
+                           }`}>
+                           {status === 'loading' ? 'Sending your message...' : message}
+                        </div>
+                     )}
+
+                     <button
+                        type="submit"
+                        disabled={status === 'loading'}
+                        className={`w-full bg-primary-600 text-white font-bold text-sm py-4 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 ${status === 'loading' ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-900'}`}
+                     >
+                        {status === 'loading' ? (
+                           <>
+                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              Sending...
+                           </>
+                        ) : 'Send Message'}
                      </button>
                   </form>
                </motion.div>
