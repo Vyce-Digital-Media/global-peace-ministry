@@ -183,7 +183,7 @@ export default function Home() {
               { icon: Heart, title: "Charity & Foundation", desc: "Empowering the less privileged through practical charity work and community development." },
               { icon: Users, title: "Healing & Deliverance", desc: "Preaching the Gospel, praying for the sick, and ministering healing and prophetic messages." },
               { icon: BookOpen, title: "Bible Studies & Discipleship", desc: "In-depth Bible teaching, Christian living training, and growing disciples of Christ." },
-              { icon: MapPin, title: "Global Evangelism", desc: "Taking the message of Christ to every corner of the world — Africa, Europe, the Americas, and Asia." }
+              { icon: MapPin, title: "Global Evangelism", desc: "Taking the message of Christ to all nations of the world — Africa, Europe, the Americas, and Asia." }
             ].map((value, idx) => (
               <motion.div
                 key={idx}
@@ -261,7 +261,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-primary-900/10 rounded-lg -rotate-3 transition-transform duration-700 group-hover:-rotate-6" />
             <div className="relative w-full h-full bg-white shadow-2xl rounded-sm border border-black/5 overflow-hidden ring-8 ring-white/50">
               <img
-                src="/Dr Haiku Photos/gpm-photo-54.jpeg"
+                src="/new-image-global.jpeg"
                 alt="Lord Professor Dr. Kingsley Kebiru Momodu"
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               />
