@@ -12,56 +12,12 @@ const fadeInUp = {
    transition: { duration: 0.8 }
 };
 
-const articles = [
-   {
-      slug: "why-global-peace-is-not-a-dream",
-      title: "Why Global Peace Is Not a Dream — It Is a Human Calling",
-      desc: "An exploration of the Biblical and scholarly foundation for world peace — drawing on Dr. Momodu's doctoral research and life experience across Nigeria, Italy, and the United Kingdom.",
-      category: "Peace & Advocacy",
-      readTime: "12 min read",
-      image: "/blog-images/peace.png"
-   },
-   {
-      slug: "the-power-of-prayer-in-a-world-at-war",
-      title: "The Power of Prayer in a World at War",
-      desc: "How intercession changes nations — a look at the history of prayer movements and their documented impact on political and social change.",
-      category: "Prayer & Faith",
-      readTime: "11 min read",
-      image: "/blog-images/prayer.png"
-   },
-   {
-      slug: "understanding-your-calling",
-      title: "Understanding Your Calling: How to Discover Why God Created You",
-      desc: "A practical guide for Christians seeking to identify and step into their God-given purpose.",
-      category: "Discipleship & Purpose",
-      readTime: "11 min read",
-      image: "/blog-images/calling.png"
-   },
-   {
-      slug: "forgiveness-across-faiths",
-      title: "The Gospel of Forgiveness: How Grace Changes Everything",
-      desc: "A reflection by Dr. Momodu on the radical power of Christian forgiveness — from Scripture's greatest portraits of grace to what it means to forgive as peacemakers in a broken world.",
-      category: "Personal Testimony & Peace",
-      readTime: "13 min read",
-      image: "/blog-images/forgiveness.png"
-   },
-   {
-      slug: "what-the-bible-says-about-poverty",
-      title: "What the Bible Says About Poverty and Our Responsibility",
-      desc: "A Biblical teaching on God's heart for the poor and practical steps Christians can take to make a difference.",
-      category: "Charity & Service",
-      readTime: "10 min read",
-      image: "/blog-images/poverty.png"
-   },
-   {
-      slug: "healing-is-for-today",
-      title: "Healing Is For Today: God's Will for Your Health",
-      desc: "A Scripture-based exploration of divine healing and how to receive and walk in God's healing power.",
-      category: "Healing & Faith",
-      readTime: "11 min read",
-      image: "/blog-images/healing.png"
-   }
-];
+import { articles as articlesRecord } from '@/data/blog';
+
+const articles = Object.entries(articlesRecord).map(([slug, data]) => ({
+   slug,
+   ...data
+}));
 
 export default function BlogPage() {
    const [isMobile, setIsMobile] = useState(false);
