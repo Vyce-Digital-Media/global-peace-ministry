@@ -18,6 +18,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'Global Peace Ministry',
   description: 'Global Peace Is Possible. A movement of faith uniting locally to spread peace globally.',
+  icons: {
+    icon: '/GPC Logo.png',
+  },
 };
 
 export default function RootLayout({
