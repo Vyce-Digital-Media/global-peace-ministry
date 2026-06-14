@@ -34,7 +34,7 @@ export default function AboutPage() {
    const mBright = '0.5';      // Brightness
 
    return (
-      <div className="flex flex-col w-full bg-cream min-h-screen">
+      <div className="flex flex-col w-full bg-cream min-h-screen overflow-x-hidden">
 
          {/* 1. Hero Section (100vh) */}
          <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 md:px-12 bg-primary-900 pt-20">
@@ -59,7 +59,7 @@ export default function AboutPage() {
                   transition={{ duration: 1 }}
                >
                   <h2 className="text-[12px] font-bold uppercase tracking-[0.4em] text-light-sage mb-6">About Us</h2>
-                  <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-cream mb-8 leading-[1.1] max-w-7xl mx-0">
+                  <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-cream mb-8 leading-[1.1]">
                      About Global Peace Ministry &amp; Our Founder
                   </h1>
                   <p className="text-xl md:text-2xl font-medium leading-relaxed text-cream/80 mb-12 max-w-3xl mx-auto">
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
          {/* 3. About the Founder */}
          <section className="py-24 px-6 md:px-0 bg-white border-t border-muted-teal/20">
-            <div className="max-w-7xl mx-auto lg:mx-35 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                <div className="lg:col-span-5 relative">
                   <motion.div {...fadeInUp} className="sticky top-24">
                      <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-primary-900/10 shadow-2xl relative mt-4">
@@ -112,7 +112,7 @@ export default function AboutPage() {
                      </h3>
                      <div className="w-20 h-1 bg-primary-600 rounded-full mb-6" />
 
-                     <p className="w-230 text-lg text-primary-900/80 leading-relaxed mb-8">
+                     <p className="max-w-2xl text-lg text-primary-900/80 leading-relaxed mb-8">
                         Lord Professor Dr. Kingsley Kebiru Momodu is a British-Nigerian scholar, humanitarian, ordained minister of God, and one of the world&apos;s leading voices for global peace. Born in Nigeria and a long-time resident of the United Kingdom, his life has traversed continents and cultures - a journey that has profoundly shaped his conviction that peace is not merely desirable, but achievable through the power of the Gospel of Jesus Christ.
                      </p>
 
@@ -244,7 +244,7 @@ export default function AboutPage() {
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-8 leading-snug">
                      To proclaim God&apos;s Kingdom on Earth.
                   </h2>
-                  <p className="text-lg md:text-xl text-primary-900/70 font-medium leading-relaxed mb-45">
+                  <p className="text-lg md:text-xl text-primary-900/70 font-medium leading-relaxed mb-8">
                      Through evangelism, healing prayer, global peace advocacy, charity ministry, and the transformation of lives.
                   </p>
                </motion.div>

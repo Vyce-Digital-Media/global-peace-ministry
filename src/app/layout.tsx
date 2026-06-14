@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-grow flex-col">{children}</main>

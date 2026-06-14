@@ -38,7 +38,7 @@ export default function Home() {
     <div className="flex flex-col w-full bg-cream min-h-screen">
 
       {/* 1. Hero Section — Full-screen Cinematic */}
-      <section className="relative min-h-[92vh] flex flex-col justify-center w-full overflow-hidden bg-primary-900 mt-10">
+      <section className="relative min-h-[100vh] flex flex-col justify-center w-full overflow-hidden bg-primary-900 mt-10">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img

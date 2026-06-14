@@ -13,6 +13,49 @@ const fadeInUp = {
 
 export default function DonatePage() {
    const [amount, setAmount] = useState<number | 'custom'>(100);
+   const [isProcessing, setIsProcessing] = useState(false);
+   const [paymentStatus, setPaymentStatus] = useState<{ success: boolean; message: string } | null>(null);
+
+   const handlePayment = async () => {
+      const numericAmount = typeof amount === 'number' ? amount : 0;
+      if (numericAmount <= 0) {
+         alert('Please enter a valid donation amount.');
+         return;
+      }
+
+      setIsProcessing(true);
+      setPaymentStatus(null);
+
+      try {
+         const response = await fetch('/api/donate/order', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount: numericAmount }),
+         });
+
+         const data = await response.json();
+
+         if (!response.ok) {
+            throw new Error(data.error || 'Failed to initiate donation process.');
+         }
+
+         if (data.url) {
+            // Redirect to Stripe Checkout
+            window.location.href = data.url;
+         } else {
+            throw new Error('Failed to get checkout URL from server.');
+         }
+      } catch (err: any) {
+         console.error('Donation initiation error:', err);
+         setIsProcessing(false);
+         setPaymentStatus({
+            success: false,
+            message: err.message || 'An error occurred. Please try again.',
+         });
+      }
+   };
 
    return (
       <div className="flex flex-col w-full bg-cream min-h-screen">
@@ -187,18 +230,46 @@ export default function DonatePage() {
                            <span className="text-3xl font-bold text-cream/50 absolute left-6">$</span>
                            <input
                               type="number"
-                              className="w-full bg-transparent text-4xl md:text-5xl font-bold text-cream pl-8 py-6 focus:outline-none placeholder-cream/20"
+                              min="0"
+                              className="w-full bg-transparent text-4xl md:text-5xl font-bold text-cream pl-8 py-6 focus:outline-none placeholder-cream/20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                               placeholder="0"
                               value={typeof amount === 'number' ? amount : ''}
-                              onChange={(e) => setAmount(Number(e.target.value))}
+                              onChange={(e) => {
+                                 const val = Number(e.target.value);
+                                 if (val >= 0) setAmount(val);
+                                 else setAmount(0);
+                              }}
                            />
                         </div>
                      </div>
 
-                     <button className="w-full py-6 bg-cream text-primary-900 font-bold text-lg uppercase tracking-[0.2em] rounded-xl hover:bg-light-sage transition-colors duration-300 shadow-xl flex items-center justify-center gap-3">
-                        <HeartHandshake className="w-6 h-6" />
-                        Give ${typeof amount === 'number' ? amount : '0'}
+                     <button
+                        onClick={handlePayment}
+                        disabled={isProcessing}
+                        className="w-full py-6 bg-cream text-primary-900 font-bold text-lg uppercase tracking-[0.2em] rounded-xl hover:bg-light-sage transition-colors duration-300 shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                     >
+                        {isProcessing ? (
+                           <>
+                              <div className="w-5 h-5 border-2 border-primary-900 border-t-transparent rounded-full animate-spin" />
+                              Processing...
+                           </>
+                        ) : (
+                           <>
+                              <HeartHandshake className="w-6 h-6" />
+                              Give ${typeof amount === 'number' ? amount : '0'}
+                           </>
+                        )}
                      </button>
+
+                     {paymentStatus && (
+                        <div className={`mt-6 p-4 rounded-xl text-center text-sm font-medium ${
+                           paymentStatus.success
+                              ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'
+                              : 'bg-rose-500/10 border border-rose-500/20 text-rose-400'
+                        }`}>
+                           {paymentStatus.message}
+                        </div>
+                     )}
                   </div>
                </motion.div>
             </div>
@@ -207,3 +278,4 @@ export default function DonatePage() {
       </div>
    );
 }
+
