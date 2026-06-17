@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+env:
+  NEXT_PUBLIC_FORM_API: ${{ secrets.NEXT_PUBLIC_FORM_API }}
+  STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+  NEXT_PUBLIC_STRIPE_CURRENCY: ${{ secrets.NEXT_PUBLIC_STRIPE_CURRENCY }}
 
 jobs:
   build-and-deploy:
@@ -33,3 +37,4 @@ jobs:
           port: 21
           local-dir: out/
           server-dir: /
+
