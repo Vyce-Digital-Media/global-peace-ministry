@@ -22,6 +22,9 @@ export async function POST(request: Request) {
     // Convert amount to the smallest unit (cents/pence)
     const amountInSmallestUnit = Math.round(amount * 100);
 
+    // Get the origin dynamically from the request headers to support both localhost and production
+    const origin = request.headers.get('origin') || 'http://localhost:6969';
+
     // 3. Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -39,9 +42,8 @@ export async function POST(request: Request) {
         },
       ],
       mode: 'payment',
-      // Get the origin dynamically from the request headers to support both localhost and production
-      success_url: `${request.headers.get('origin')}/donate/success`,
-      cancel_url: `${request.headers.get('origin')}/donate`,
+      success_url: `${origin}/donate/success`,
+      cancel_url: `${origin}/donate`,
     });
 
     // 4. Return the session URL back to client

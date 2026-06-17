@@ -31,7 +31,6 @@ export default function Navbar() {
             <div className="flex flex-col text-white font-bold leading-tight">
               <div className="flex items-baseline gap-1.5 mb-1.5">
                 <span className="text-lg md:text-xl tracking-wider uppercase whitespace-nowrap leading-none">GLOBAL PEACE Ministry</span>
-
               </div>
               <div className="inline-block">
                 <span className="text-[9px] md:text-[11px] tracking-[0.2em] text-red-600 font-black uppercase leading-none bg-white px-2 py-1 rounded-[2px] shadow-sm">

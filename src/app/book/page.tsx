@@ -21,7 +21,7 @@ export default function BookPage() {
 
                {/* Left: Book Co ver */}
                <div className="lg:col-span-5 relative">
-                  <motion.div {...fadeInUp} className="sticky top-32">
+                  <motion.div {...fadeInUp} className="sticky top-32 flex flex-col gap-6">
                      <div className="w-full aspect-[2/3] md:aspect-[3/4] rounded-2xl overflow-hidden bg-primary-900/5 shadow-2xl relative border-4 border-white">
                         <img
                            src="/Dr Haiku Photos/gpm-photo-54.jpeg"
@@ -54,7 +54,7 @@ export default function BookPage() {
                         <p className="text-primary-900 font-medium mt-2"><strong>Publisher:</strong> Nexus Stores</p>
                         <p className="text-primary-900/80"><strong>First Published:</strong> 2026 | <strong>ISBN:</strong> 978-93-47491-13-9</p>
                         <p className="text-primary-900 font-bold text-2xl mt-4">MRP: £12.99</p>
-                        <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                        <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6">
                            <a href="/" target="_blank" rel="noopener noreferrer" className="btn-primary text-center">
                               Order Now - nexus stores
                            </a>
@@ -65,6 +65,15 @@ export default function BookPage() {
                      </div>
                   </motion.div>
                </div>
+            </div>
+
+            {/* FULL WIDTH PLAY AUDIOBOOK BUTTON */}
+            <div className="max-w-7xl mx-auto w-full mt-12 mb-4">
+               <motion.div {...fadeInUp}>
+                  <Link href="/book/audiobook" className="w-full bg-primary-900 hover:bg-primary-600 text-cream text-center flex items-center justify-center py-6 md:py-8 text-xl md:text-2xl font-bold uppercase tracking-[0.3em] shadow-2xl rounded-2xl transition-all duration-500 border-2 border-primary-900 hover:border-primary-600 group">
+                     PLAY AUDIOBOOK <span className="ml-4 transition-transform group-hover:translate-x-2">→</span>
+                  </Link>
+               </motion.div>
             </div>
 
             {/* Side by Side Content Row */}
