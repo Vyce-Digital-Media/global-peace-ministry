@@ -91,7 +91,7 @@ export default function DonatePage() {
             <div className="absolute bottom-30 left-1/2 -translate-x-1/2">
                <button
                   onClick={() => document.getElementById('secure-gateway')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-md font-bold uppercase tracking-[0.3em] px-14 py-6 border-2 border-white bg-white text-primary-900 hover:bg-primary-900 hover:text-white transition-all duration-500 shadow-2xl"
+                  className="cursor-pointer text-md font-bold uppercase tracking-[0.3em] px-14 py-6 border-2 border-white bg-white text-primary-900 hover:bg-primary-900 hover:text-white transition-all duration-500 shadow-2xl"
                >
                   Donate Now
                </button>
@@ -214,7 +214,7 @@ export default function DonatePage() {
                            <button
                               key={val}
                               onClick={() => setAmount(val)}
-                              className={`border py-6 text-2xl font-serif font-bold rounded-xl transition-all duration-300 ${amount === val
+                              className={`cursor-pointer border py-6 text-2xl font-serif font-bold rounded-xl transition-all duration-300 ${amount === val
                                  ? 'bg-light-sage text-primary-900 border-light-sage scale-105 shadow-lg'
                                  : 'bg-white/5 text-cream border-white/20 hover:bg-white/10'
                                  }`}
@@ -246,7 +246,7 @@ export default function DonatePage() {
                      <button
                         onClick={handlePayment}
                         disabled={isProcessing}
-                        className="w-full py-6 bg-cream text-primary-900 font-bold text-lg uppercase tracking-[0.2em] rounded-xl hover:bg-light-sage transition-colors duration-300 shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="cursor-pointer w-full py-6 bg-cream text-primary-900 font-bold text-lg uppercase tracking-[0.2em] rounded-xl hover:bg-light-sage transition-colors duration-300 shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                      >
                         {isProcessing ? (
                            <>
