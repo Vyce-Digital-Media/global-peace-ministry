@@ -293,7 +293,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-10 pt-4 border-t border-primary-900/10">
               <div className="flex flex-col">
                 <span className="text-[13px] font-bold uppercase tracking-widest text-primary-900/50 mb-1">Price</span>
-                <span className="text-xl font-bold text-primary-900 font-sans">£12.99</span>
+                <span className="text-xl font-bold text-primary-900 font-sans">£9.99</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[13px] font-bold uppercase tracking-widest text-primary-900/50 mb-1">Availability</span>
@@ -303,7 +303,7 @@ export default function Home() {
 
             <div className="mt-12 flex flex-col sm:flex-row items-center gap-8">
 
-              <Link href="/" target="_blank" className="btn-primary px-10 hover:bg-transparent hover:text-primary-900">
+              <Link href="https://amzn.in/d/09pwp67w" target="_blank" className="btn-primary px-10 hover:bg-transparent hover:text-primary-900">
                 ORDER YOUR COPY
               </Link>
               <Link href="/book" className="text-primary-900 font-bold uppercase tracking-[0.2em] text-sm hover:text-primary-600 transition-colors">

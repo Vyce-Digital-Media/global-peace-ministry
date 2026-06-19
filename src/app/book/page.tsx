@@ -53,9 +53,9 @@ export default function BookPage() {
                         <p className="text-primary-900 font-medium"><strong>Author:</strong> Lord Professor Dr. Kingsley Kebiru Momodu <br /><span className="text-sm text-primary-900/60 font-normal">PhD in World Peace | Honorary Doctorate | Honorary Professor of World Peace <br />Kennedy University of Baptist, United States of America</span></p>
                         <p className="text-primary-900 font-medium mt-2"><strong>Publisher:</strong> Nexus Stores</p>
                         <p className="text-primary-900/80"><strong>First Published:</strong> 2026 | <strong>ISBN:</strong> 978-93-47491-13-9</p>
-                        <p className="text-primary-900 font-bold text-2xl mt-4">MRP: £12.99</p>
+                        <p className="text-primary-900 font-bold text-2xl mt-4">MRP: £9.99</p>
                         <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6">
-                           <a href="/" target="_blank" rel="noopener noreferrer" className="btn-primary text-center">
+                           <a href="https://amzn.in/d/09pwp67w" target="_blank" rel="noopener noreferrer" className="btn-primary text-center">
                               Order Now - nexus stores
                            </a>
                            <Link href="/contact" className="btn-secondary text-primary-900 border-primary-900 hover:bg-primary-900 hover:text-white text-center">
