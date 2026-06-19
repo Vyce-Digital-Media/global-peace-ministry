@@ -56,7 +56,7 @@ export default function BookPage() {
                         <p className="text-primary-900 font-bold text-2xl mt-4">MRP: £9.99</p>
                         <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6">
                            <a href="https://amzn.in/d/09pwp67w" target="_blank" rel="noopener noreferrer" className="btn-primary text-center">
-                              Order Now - nexus stores
+                              Order Now - Amazon Stores
                            </a>
                            <Link href="/contact" className="btn-secondary text-primary-900 border-primary-900 hover:bg-primary-900 hover:text-white text-center">
                               Contact us for a copy

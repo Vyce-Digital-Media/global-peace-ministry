@@ -297,7 +297,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col">
                 <span className="text-[13px] font-bold uppercase tracking-widest text-primary-900/50 mb-1">Availability</span>
-                <span className="text-sm font-bold text-primary-900 uppercase tracking-wider text-balance">Nexus Stores</span>
+                <span className="text-sm font-bold text-primary-900 uppercase tracking-wider text-balance">Amazon Stores</span>
               </div>
             </div>
 
